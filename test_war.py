@@ -1,5 +1,7 @@
+import Classes
 from Classes import *
 import unittest
+import main
 
 
 #########
@@ -10,19 +12,22 @@ class BigTest(unittest.TestCase):
         self.deck = Deck()
 
 
-class TestSum(unittest.TestCase):
-
-    def test_sum(self):
-        self.assertEqual(sum([1, 2, 3]), 6, "Should be 6")
-
-
 class TestDeck(unittest.TestCase):
 
-    def is_deck(self):
-        test_deck = Deck()
-        self.assertEqual(type(test_deck), 5)
+    def test_is_deck(self):
+        test_deck = Classes.Deck()
+        self.assertEqual(type(test_deck), Classes.Deck)
+
+    def test_shuffle_deck(self):
+        '''
+
+        :return:
+        '''
+        test_deck = Classes.Deck()
+        Classes.Deck.shuffle()
+        self.assertNotEqual(test_deck.deal_one(), 'Ace of Clubs')
 
 
 ###########
-#if __name__ == "__main__":
-#    unittest.main()
+if __name__ == "__main__":
+    unittest.main()
