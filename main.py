@@ -1,15 +1,14 @@
 #########
 # Imports
 #########
-#sneaky note
 
-from Classes import *
+from Classes import Deck, Player
 
 ##################
 # Global Variables
 ##################
 
-game_on = True
+game_On = True
 at_war = True
 
 
@@ -62,7 +61,7 @@ def round_stats():
     # each player has only played one card
     if len(ceaser_played_card) < 2:
 
-        print(f""" === Round {round_num} statistics ===
+        print(f""" === Round {round_Num} statistics ===
         {ceaser.name}'s card:
             card rank: {ceaser_played_card[0].rank}
             card suit: {ceaser_played_card[0].suit}
@@ -79,13 +78,13 @@ def round_stats():
     # each player has played multiple cards
     elif len(ceaser_played_card) > 2:
 
-        print(f" === Round {round_num} statistics ===")
+        print(f" === Round {round_Num} statistics ===")
 
         print(f"{ceaser.name}'s cards:")
         print(f'num. of cards: {len(ceaser.all_cards)}')
         print(f'stack total: {rank_sum(ceaser_played_card)}')
-        for i in range(len(ceaser_played_card)):
-            print(f"""  == Card {i} ==           
+        for _ in range(len(ceaser_played_card)):
+            print(f"""  == Card {i} ==
             card rank: {ceaser_played_card[i].rank}
             card suit: {ceaser_played_card[i].suit}
             card value: {ceaser_played_card[i].value}
@@ -94,8 +93,8 @@ def round_stats():
         print(f"{caligula.name}'s cards:")
         print(f'num. of cards: {len(caligula.all_cards)}')
         print(f'stack total: {rank_sum(caligula_played_card)}')
-        for i in range(len(caligula_played_card)):
-            print(f"""  == Card {i} ==     
+        for _ in range(len(caligula_played_card)):
+            print(f"""  == Card {i} ==
             card rank: {caligula_played_card[i].rank}
             card suit: {caligula_played_card[i].suit}
             card value: {caligula_played_card[i].value}
@@ -118,27 +117,27 @@ if __name__ == '__main__':
     new_deck.shuffle()
 
     # deals out half the deck to each player
-    for x in range(int(len(new_deck.all_cards) / 2)):
+    for _ in range(int(len(new_deck.all_cards) / 2)):
         caligula.add_cards(new_deck.deal_one())
         ceaser.add_cards(new_deck.deal_one())
 
-    round_num = 0
+    round_Num = 0
 
-    # while game_on == true, run through all this logic.
-    while game_on:
-        round_num += 1
-        print(f'Round {round_num} ---')
+    # while game_On == true, run through all this logic.
+    while game_On:
+        round_Num += 1
+        print(f'Round {round_Num} ---')
 
         if len(caligula.all_cards) == 0:
             print(f'{caligula.name} is out of cards. {ceaser.name} is victorious!')
-            print(f' this game lasted for {round_num} rounds.')
-            # game_on = False
+            print(f' this game lasted for {round_Num} rounds.')
+            # game_On = False
             break
 
         if len(ceaser.all_cards) == 0:
             print(f'{ceaser.name} is out of cards. {caligula.name} is victorious!')
-            print(f' this game lasted for {round_num} rounds.')
-            # game_on = False
+            print(f' this game lasted for {round_Num} rounds.')
+            # game_On = False
             break
 
         # NEW ROUND
@@ -152,7 +151,8 @@ if __name__ == '__main__':
         except IndexError as ie:
             print(ie)
             break
-        print(f'{ceaser.name} played {ceaser_played_card[0]} and {caligula.name} played {caligula_played_card[0]}')
+        print(f'{ceaser.name} played {ceaser_played_card[0]} and \n'
+              f'{caligula.name} played {caligula_played_card[0]}')
 
         # compare the cards
         if ceaser_played_card[0].value > caligula_played_card[0].value:
@@ -209,5 +209,5 @@ if __name__ == '__main__':
                           f"the war rages on...")
                     round_stats()
 
-    # prompt to play again. sets game_on to false to break the big while loop
-    game_on = play_again()
+    # prompt to play again. sets game_On to false to break the big while loop
+    game_On = play_again()
