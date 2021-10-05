@@ -67,7 +67,7 @@ class Deck:
 
     def deal_one(self):
 
-        return self.all_cards.pop()
+        return self.all_cards.pop(0)
 
 
 # player
